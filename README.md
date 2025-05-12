@@ -100,4 +100,53 @@ Node is an environment that lets you run js outside of your browser eg from term
 	```export default function ComponentName() {}```
 - Dynamic Routing allows for URL parameters to generate routes dynamically in Next.js
 - The '^' symbol allows npm to install versions greater than the specified one, respecting semver rules.
-"# Next.js" 
+- The compiler handles transformations like bundling and minifying.
+
+### Next.js higher-level core concepts
+- environment is the setting in which your code operates
+- minifying basically removes extra formatting/ parts of code to make it more efficient (smaller file sizes will be more efficient). It's really only a small aspect of optimisation.
+- Next.js offers features like code splitting and SSR for enhanced speed.
+- Next enchances deployment with serverless functions by deploying functions at edge locations to reduce latency.
+
+#### Bundled code
+- when you build your project for production, it generates optimised and minifies JS files that include your application code and dependencies. These bundled files are whats deployed to your hosting platform.
+- Bundling organizes files to improve application efficiency.
+
+#### Code splitting 
+- The different pages of your application which are accessible through diff URLs act as unique entry points to the application. 
+- Code splitting means splitting the bundled code into smaller segments required by each page. eg say you click on page1, instead of loading the whole application every time, you just load the chunk needed for page1. 
+- The objective is to enchance the applications initial load speed by only loading the code essential for that particular page. 
+- Shared code between pages is seperated into another bundle to prevent redundant code downloads
+- Following the initial page load, next can do pre-loading i.e., loading page it thinks you will visit next
+
+#### Build time v run time
+- Build time is the steps that prepare your app code for production. i.e., transforming code into production-optimised files ready to be deployed to servers and used by users
+- Run time is is when your application runs in response to a user request after the apps been build and deployed (everything after built & deployed eg a re-render in response to a user clicking something)
+
+#### Client & Server
+- Client is the web browser on a users device (client side is the response)
+- Server can pre-render pages b4 sending to client (SSR - Server side rendering)
+- Rendering is transforming code to html representation of your ui (can occur on server or client side)
+- 3 rendering methids in next: server-side rendering (SSR), static site generation (SSG), client-side rendering
+- SSR & SSG are pre-rendering techniques cause they involve fetching data & converting React components to html content before deliering to client. React pre-renders each page rather than depending on js. Since its pre rendered, users are never waiting for a response initially which is better ux & seo. 
+- Client side rendering better for ui updates that the whole page diesnt need to be fully re-rendered eg notifications  
+- Client side updates is called hydration
+- When user requests a new page, this happens on server side, but when they interact with the ui eg changing a state, clicking on a button, its client side rendering
+- You get initial state by server but then updates are stored on client side
+- If you wanna persist data you can use local storage (when you change pages)
+- With ssg theres no server @ run time i.e., its just producing the static psges and not respondinding to ui. SSR is better if u need responses from server. ssg for pages that dont change eg a blog page
+- CSR handles dynamic updates efficiently once the page is initially loaded.
+- Pre-generated HTML allows users to see content almost immediately.
+- The browser manages requests and responses.
+- Runtime is when the application responds to interaction.
+- Hydration helps convert static HTML into an interactive page.
+- Rendering involves converting code to visible, interactive HTML.
+- SSR occurs on the server, while CSR is browser-based.
+- SSG is ideal for pages where content doesn't change often, enhancing speed.
+
+#### CDNs & edge in next & Vercel
+- CDNs are basically distributing your content accross servers closer to your customer (lots of servers in diff locations rather than 1 central server). they act as intermediaries between origin server & users
+- In general when your talking about the edge your talking about the outmost part of the network situated closest to the user so cdns can be soncsidered as part of the edge since they house static content at the outer layer
+- Next allows us to deploy and manage serverless functions at the edge (host your apis rather than an entire backend server which is more efficient)
+- Vercel is what you deploy it on and you get access to Vercels cdn
+- CDNs reduce latency by serving from nearby servers.
