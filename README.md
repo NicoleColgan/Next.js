@@ -150,3 +150,22 @@ Node is an environment that lets you run js outside of your browser eg from term
 - Next allows us to deploy and manage serverless functions at the edge (host your apis rather than an entire backend server which is more efficient)
 - Vercel is what you deploy it on and you get access to Vercels cdn
 - CDNs reduce latency by serving from nearby servers.
+
+## Building a Next.js App
+- To copy the example from this endpoint to a new project (which we havent yet create) called nextjs-blog
+```
+npx create-next-app@latest nextjs-blog --example https://github.com/vercel/next-learn/tree/main/basics/learn-starter
+```
+- Each component has a route which you can access through a url eg if you export route1 then you can access it by localhost:3000/route1. eg if you have a file called first-post.js which you have in a folder called posts (inside your pages), then to get to it, you would go to localhost:3000/posts/first-post (even if the actual function has a different name)
+- Use the <Link> component for client side navigation between pages
+- The page your on is pre-rendered but if you link to another page then next is prefetching the data to the linked page too
+- Dynamic routing allows for routes that can change based on URL parameters.
+- Next.js uses seperate js bundles for each page to optimise loading by only loading scripts required for the current page.
+- loads only required scripts, enhancing speed.
+- Code splitting enhances performance by loading only required code.
+- Pages are created by mapping folder structure to routes.
+- Link component allows navigation without full page reloads.
+- Props pass data between components for dynamic content.
+- The fast-refresh feature allows instantaneous browser updates, enhancing development speed.
+- Functional components simplify the React codebase and are easier to manage and reuse.
+- NPX allows you to run package binaries without installing them globally.
