@@ -197,10 +197,13 @@ export default function FirstPost() {
       </Layout>
     </>
   );
-}```
+}
+```
 all thats nested inside the Layout component is passed to Layout as a prop. Layout is defined like this
-```export default function Layout({children}) {
+```
+export default function Layout({children}) {
     return <div className={styles.container}>{children}</div>
-}```
+}
+```
 so it requires this prop
 - In order to apply global css you use the special file name pages/_app.css which wraps every page in your app. The Component prop it takes in represents the page being visited and the pageProps is the data needed for that page. You can then write your css in the global.css file and import it from the _app.js file. _app.js can be used as a global wrapper for your entire app so you can apply stuff to it that you want to affect every page eg css, analytics, auth etc
