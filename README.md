@@ -157,7 +157,7 @@ Node is an environment that lets you run js outside of your browser eg from term
 npx create-next-app@latest nextjs-blog --example https://github.com/vercel/next-learn/tree/main/basics/learn-starter
 ```
 - Each component has a route which you can access through a url eg if you export route1 then you can access it by localhost:3000/route1. eg if you have a file called first-post.js which you have in a folder called posts (inside your pages), then to get to it, you would go to localhost:3000/posts/first-post (even if the actual function has a different name)
-- Use the <Link> component for client side navigation between pages
+- Use the Link component for client side navigation between pages
 - The page your on is pre-rendered but if you link to another page then next is prefetching the data to the linked page too
 - Dynamic routing allows for routes that can change based on URL parameters.
 - Next.js uses seperate js bundles for each page to optimise loading by only loading scripts required for the current page.
@@ -169,3 +169,38 @@ npx create-next-app@latest nextjs-blog --example https://github.com/vercel/next-
 - The fast-refresh feature allows instantaneous browser updates, enhancing development speed.
 - Functional components simplify the React codebase and are easier to manage and reuse.
 - NPX allows you to run package binaries without installing them globally.
+
+## Metadata and assets in Next.js
+- styled version of basic app 
+```npx create-next-app next-js-blog --use-npm --example "https://github.com/vercel/next-learn/tree/main/basics/assets-metadata-css-starter"  ```
+- npx helps with conflicts too cause you dont have to manually install packages
+- Served assets like images are put in the public directory, also useful for robots.txt and any other static assets
+- Images arent optimised till build time.
+- Images are lazily loaded (loaded as you scroll into the viewport)
+- To add metadata you can use the Head component
+- To load scripts you can use the script component if you want to optimise loading scripts eg lazy loading, logging, onloading, strategy, stop it delaying the rest of the page from loading etc., 
+- lazyOnLoad = dont load right away - wait for idle time6
+- strategy controls when we should load - lazyOnLoad means load it during the browsers idle time (not immediately cause its not as important & wont be clicked immediately)
+- When you nest jsx inside a component like this 
+```
+export default function FirstPost() {
+  return (
+    <>
+      <Layout>
+        <Head>
+          ...
+        </Head>
+        <h2>
+          ...
+        </h2>
+		...
+      </Layout>
+    </>
+  );
+}```
+all thats nested inside the Layout component is passed to Layout as a prop. Layout is defined like this
+```export default function Layout({children}) {
+    return <div className={styles.container}>{children}</div>
+}```
+so it requires this prop
+- In order to apply global css you use the special file name pages/_app.css which wraps every page in your app. The Component prop it takes in represents the page being visited and the pageProps is the data needed for that page. You can then write your css in the global.css file and import it from the _app.js file. _app.js can be used as a global wrapper for your entire app so you can apply stuff to it that you want to affect every page eg css, analytics, auth etc
