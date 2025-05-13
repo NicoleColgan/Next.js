@@ -207,3 +207,24 @@ export default function Layout({children}) {
 ```
 so it requires this prop
 - In order to apply global css you use the special file name pages/_app.css which wraps every page in your app. The Component prop it takes in represents the page being visited and the pageProps is the data needed for that page. You can then write your css in the global.css file and import it from the _app.js file. _app.js can be used as a global wrapper for your entire app so you can apply stuff to it that you want to affect every page eg css, analytics, auth etc
+- Can add meta tags in the jsx to add metadata. In html you would have this in the head section but we place it in the next Head component in Next. 
+- og = opengraph protocol - for sharing an image on social media platform, og title = title for sharing on social media, twitter has its own card.
+- You can conditionally render with js and terinary operator
+- If the component is self closing then the props are undefined. If its not, then everything before you close the component are its children (props). Children is inherint (i.e., everything inside the tag), but if you wanna pass another proper with a specific name, then you need to pass it inside the opening tag 
+e.g.,
+```
+export default function Home() {
+  return (
+    <ComponentName namedProp>
+      ...Everything inside here is the children
+    </ComponentName>
+  )
+}
+```
+- Global styles ensure consistent styling across the entire application.
+- Dynamic routes enable creating pages based on incoming data or parameters.
+- Place images in the /public directory for static serving.
+- The children prop is used for rendering nested JSX elements.
+- Lazy loading images improve load speed by deferring load until necessary.
+- Pre-rendering enhances performance by serving pre-built HTML, improving load times.
+- The Head component in Next.js is used to manage metadata and ensures it is properly placed and managed.
