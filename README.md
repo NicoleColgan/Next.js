@@ -228,3 +228,38 @@ export default function Home() {
 - Lazy loading images improve load speed by deferring load until necessary.
 - Pre-rendering enhances performance by serving pre-built HTML, improving load times.
 - The Head component in Next.js is used to manage metadata and ensures it is properly placed and managed.
+
+## Pre-rendering & data fetching
+- Static generation is the html generated at build time (deploy) and reused for each request
+- Server-side rendering involves rendering all the components again on each request
+- The decision of whether to use each one is, can you generate the whole content before the users request. For example, if the page doesnt change often like a blog page, you might want to use static but if it does like a user dashboard, you may only want to load it when the user asks for it cause you want fresh data on every request
+- If no data is required, the html will be generated at build time & theres no need to go back and fetch external data.
+- You can use the getStatic prope function to fetch data at build time
+- Can use the gray-matter library to parse md files (get out meta data to use for some purpose)
+- If your calling an api then you would wanna use async await
+- Get static props only runs at build time
+- SSR with data is more secure. On each reqest the data is fetched & the html is rendered
+- instead of getstaticprops we use getServerSideProps to get at request time - its slower than getStaticProps (CSR) but its slower cause it has to go to server
+- If you have a staticlyt regenerated page, you can use SWR to fetch data from an api and automatically udate ui when changes occur but it primarily works on client side. It has event listeners to pdate components without manual intervention
+- Front matter in md files is metaDATA
+- Serving cached pages ( static generation) reduces server load as the pages do not have to be generated on each request.
+- In Next.js, you use getServerSideProps when you want to fetch data on every request, directly from the server
+- Next.js uilt-in features for SSR, static generation, and routing.
+- Server-Side Rendering (SSR): Generates the page on every request using getServerSideProps. Good for dynamic or user-specific data.
+- Static Generation (SSG): Generates the page at build time using getStaticProps. Good for static, fast-loading pages with rarely changing content.
+- Next.js (or Node.js, more specifically) uses fs.readFileSync from the built-in fs (File System) module to read file content synchronously.
+- fetch() is used to retrieve data asynchronously over the network
+- Static generation occurs once during the build process, creating static HTML files.
+- A key difference between client-side and server-side data fetching in Next.js is WHEN and WHERE thedata is fetched.
+  - Client-side data fetching:
+    - Happens in the browser after the page loads
+    - Uses useEffect, fetch(), or libraries like SWR
+    - Good for dynamic or user-specific content that doesn’t need SEO
+  - Server-side data fetching (e.g. with getServerSideProps):
+    - Happens on the server before the page is sent to the browser
+    - Good for SEO and faster initial page load with fresh data
+  - 📌 Client-side = fetch after page loads
+  - 📌 Server-side = fetch before page load
+- To create dynamic routes in a Next.js application, you don't use a command, but instead create a file with square brackets in the pages directory. e.g., ```/pages/posts/[id].js
+```
+- Prerendering generates static HTML files at build time, which speeds up page loads.
