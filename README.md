@@ -260,6 +260,8 @@ export default function Home() {
     - Good for SEO and faster initial page load with fresh data
   - 📌 Client-side = fetch after page loads
   - 📌 Server-side = fetch before page load
-- To create dynamic routes in a Next.js application, you don't use a command, but instead create a file with square brackets in the pages directory. e.g., ```/pages/posts/[id].js
+- To create dynamic routes in a Next.js application, you don't use a command, but instead create a file with square brackets in the pages directory. e.g., 
+```
+/pages/posts/[id].js
 ```
 - Prerendering generates static HTML files at build time, which speeds up page loads.
